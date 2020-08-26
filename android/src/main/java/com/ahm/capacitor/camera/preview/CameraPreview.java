@@ -89,6 +89,19 @@ public class CameraPreview extends Plugin implements CameraActivity.CameraPrevie
     }
 
     @PluginMethod()
+    public void startImageStream(PluginCall call) {
+        if(this.hasCamera(call) == false){
+            call.error("Camera is not running");
+            return;
+        }
+
+        saveCall(call);
+
+        Integer quality = call.getInt("quality", 85);
+        fragment.takeSnapshot(85);
+    }
+
+    @PluginMethod()
     public void stop(final PluginCall call) {
         bridge.getActivity().runOnUiThread(new Runnable() {
             @Override

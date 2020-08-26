@@ -61,6 +61,10 @@ export class CameraPreviewWeb extends WebPlugin implements CameraPreviewPlugin {
     video.srcObject = null;
   }
 
+  startImageStream(_options: CameraPreviewPictureOptions): Promise<any> {
+    throw new Error('startImageStream not supported under the web platform');
+  }
+
   async capture(_options: CameraPreviewPictureOptions): Promise<any> {
     return new Promise((resolve, _) => {
       const video = <HTMLVideoElement>document.getElementById("video");
